@@ -1,7 +1,18 @@
-import React from "react";
-
-const validate = () => {
-  return <div>validate</div>;
+const checkValidateData = (email, password, name, isSignInForm) => {
+  console.log(name?.length, isSignInForm);
+  const isEmailValid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
+  const isPasswordValid =
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(password);
+  if (!isEmailValid) {
+    return "Email is not valid";
+  }
+  if (!isPasswordValid) {
+    return "Password is not valid";
+  }
+  if (!isSignInForm && name?.length === 0) {
+    return "Please enter the name";
+  }
+  return null;
 };
 
-export default validate;
+export default checkValidateData;
